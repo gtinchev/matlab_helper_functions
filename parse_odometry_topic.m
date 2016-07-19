@@ -1,7 +1,6 @@
 function [ pose_arr ] = parse_odometry_topic( input_file )
 %parse_odometry_topic Given a file of the odometry topic, parses the
 %position in (x,y,z) and orientation in quaternions (x,y,z,w)
-%   TODO: Detailed explanation goes here
     
     % increase the decimal point
     format long
