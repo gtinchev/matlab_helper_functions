@@ -1,6 +1,8 @@
 function [ pose_arr ] = parse_gps_fix_topic( input_file )
 %PARSE_GPS_TOPIC Given a file of the navsat/fix topic, parses the
-%position in (lat,lng, alt)
+%position in (lat,lng, alt). Generates another file where the parsed
+%position is stored: <input_file>_converted.<input_file_extension>
+
      % increase the decimal point
     format long
     
@@ -62,6 +64,15 @@ function [ pose_arr ] = parse_gps_fix_topic( input_file )
     title('Ground Truth (GPS)');
     xlabel('Longitude');
     ylabel('Latitude');
+    
+    % generate a new filename from the original
+    split_input_file = strsplit(input_file, '.'); % filename extensions
+    output_file = strcat(split_input_file{1}, '_converted', '.', split_input_file{2});
+    
+    % save to file in the correct format for ATE/RPE
+    fileID = fopen(output_file, 'w');
+    fprintf(fileID,'%10d %f %f %f\n', pose_arr');
+    fclose(fileID);
 
 end
 

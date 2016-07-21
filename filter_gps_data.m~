@@ -41,7 +41,7 @@ function [ ] = filter_gps_data( input_data, kalman_filter, median_filter_gps, me
         figure;
         gg = geoshow(input_data(:,2), input_data(:,3), 'Color', 'm');
         plot_google_map;
-        title('Original GPS reading');
+        title('Original GPS readin
         % n-th order median filtetr
         n = 150;
         
