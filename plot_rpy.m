@@ -1,26 +1,44 @@
-function [ output_args ] = plot_rpy( input_pose_body, loop )
+function [ output_args ] = plot_rpy( fovis, loam, loop )
 %PLOT_RPY Summary of this function goes here
 %   Detailed explanation goes here
-    input_pose_body(:,9:11) = rad2deg(input_pose_body(:,9:11));
+    fovis(:,9:11) = rad2deg(fovis(:,9:11));
+    loam(:,9:11) = rad2deg(loam(:,9:11));
+    
+    
+    f_arr = fovis;
+    f_arr(:,1) = f_arr(:,1) - f_arr(1,1);
+    l_arr = loam;
+    l_arr(:,1) = l_arr(:,1) - l_arr(1,1);
+    
     figure;
-    arr = input_pose_body;
-    arr(:,1) = arr(:,1) - arr(1,1);
-    plot(arr(:,1), arr(:,9));
+    hold on;
+    plot(f_arr(:,1), f_arr(:,9));
+    plot(l_arr(:,1), l_arr(:,9), 'Color', 'r');
     title(strcat('Roll Plot', loop));
     xlabel('Time [s]');
-    ylabel('Roll');
+    ylabel('Roll [deg]');
+    legend('FOVIS', 'LOAM');
+    axis equal;
     
     figure;
-    plot(arr(:,1), arr(:,10));
+    hold on;
+    plot(f_arr(:,1), f_arr(:,10));
+    plot(l_arr(:,1), l_arr(:,10), 'Color', 'r');
     title(strcat('Pitch Plot', loop))
     xlabel('Time [s]');
-    ylabel('Pitch');
+    ylabel('Pitch [deg]');
+    legend('FOVIS', 'LOAM');
+    axis equal;
     
     figure;
-    plot(arr(:,1), arr(:,11));
+    hold on;
+    plot(f_arr(:,1), f_arr(:,11));
+    plot(l_arr(:,1), l_arr(:,11), 'Color', 'r');
     title(strcat('Yaw Plot', loop));
     xlabel('Time [s]');
-    ylabel('Yaw');
+    ylabel('Yaw [deg]');
+    legend('FOVIS', 'LOAM');
+    axis equal;
 
 end
 

@@ -60,7 +60,7 @@ function [ ] = run1_results( fovision_pose_body, loam_pose_body, gps_enu)
     verb = '--verbose ';
     pl_ate = ['--plot ' spath '/comparison/ate/'];
     pl_rpe = ['--plot ' spath 'comparison/rpe/fovis_loam '];
-    fixed_delta = '--fixed_delta';
+    fixed_delta = '--fixed_delta --delta_unit m';
     
     % ATE
     
@@ -115,8 +115,7 @@ function [ ] = run1_results( fovision_pose_body, loam_pose_body, gps_enu)
     end
 
     % plot rpy
-    plot_rpy(fovision_pose_body, ' Fovis Loop 1');
-    plot_rpy(loam_pose_body, ' LOAM Loop 1');
+    plot_rpy(fovision_pose_body, loam_pose_body, ' Loop 1');
 
 end
 

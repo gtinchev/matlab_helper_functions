@@ -62,7 +62,7 @@ function [ ] = run2_results( fovision_pose_body, loam_pose_body, gps_enu)
     verb = '--verbose ';
     pl_ate = ['--plot ' spath '/comparison/ate/'];
     pl_rpe = ['--plot ' spath 'comparison/rpe/fovis_loam '];
-    fixed_delta = '--fixed_delta';
+    fixed_delta = '--fixed_delta --delta_unit m';
     
     % ATE
     
@@ -74,7 +74,7 @@ function [ ] = run2_results( fovision_pose_body, loam_pose_body, gps_enu)
     end
     
     % loam_201
-    ateStr = strcat([ate gpsInt201Str loamIntStr verb pl_ate 'loam_201.png']);
+    ateStr = strcat([ate gpsInt201Str loamIntStr verb pl_ate 'loam_201.eps']);
     [status, commandOut] = system(ateStr);
     if status==0
         dlmwrite(strcat(spath,'/comparison/ate/loam_201.txt'), commandOut,'delimiter','');
@@ -95,7 +95,7 @@ function [ ] = run2_results( fovision_pose_body, loam_pose_body, gps_enu)
     end
     
     % fovis_201
-    ateStr = strcat([ate gpsInt201Str fovisIntStr verb pl_ate 'fovis_201.png']);
+    ateStr = strcat([ate gpsInt201Str fovisIntStr verb pl_ate 'fovis_201.eps']);
     [status, commandOut] = system(ateStr);
     if status==0
         dlmwrite(strcat(spath,'/comparison/ate/fovis_201.txt'), commandOut,'delimiter','');
@@ -117,8 +117,7 @@ function [ ] = run2_results( fovision_pose_body, loam_pose_body, gps_enu)
     end
 
     % plot rpy
-    plot_rpy(fovision_pose_body, ' Fovis Loop 1');
-    plot_rpy(loam_pose_body, ' LOAM Loop 1');
+    plot_rpy(fovision_pose_body, loam_pose_body, ' Loop 2');
 
 end
 
