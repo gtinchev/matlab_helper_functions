@@ -112,23 +112,23 @@ function [ run1_enu_filtered_151, run1_enu_filtered_201, run1_enu_filtered_251 ]
         hold on;
         
         % show original data
-        gg = scatter3(input_data(:,1), input_data(:,2), input_data(:,3));
+        gg = plot3(input_data(:,1), input_data(:,2), input_data(:,3), 'Color', 'm');
         % n-th order median filtetr
         n = 151;
         run1_enu_filtered_151 = [input_data(:,1), medfilt1(input_data(:,2), n), medfilt1(input_data(:,3), n), medfilt1(input_data(:,4), n)];
-        gm151 = scatter3(run1_enu_filtered_151(:,1), run1_enu_filtered_151(:,2), run1_enu_filtered_151(:,3));
+        gm151 = plot3(run1_enu_filtered_151(:,1), run1_enu_filtered_151(:,2), run1_enu_filtered_151(:,3), 'Color', 'g');
         
         n = 201;
         run1_enu_filtered_201 = [input_data(:,1), medfilt1(input_data(:,2), n), medfilt1(input_data(:,3), n), medfilt1(input_data(:,4), n)];
-        gm201 = scatter3(run1_enu_filtered_201(:,1), run1_enu_filtered_201(:,2), run1_enu_filtered_201(:,3));
+        gm201 = plot3(run1_enu_filtered_201(:,1), run1_enu_filtered_201(:,2), run1_enu_filtered_201(:,3), 'Color', 'r');
         
         n = 251;
         run1_enu_filtered_251 = [input_data(:,1), medfilt1(input_data(:,2), n), medfilt1(input_data(:,3), n), medfilt1(input_data(:,4), n)];
-        gm251 = scatter3(run1_enu_filtered_251(:,1), run1_enu_filtered_251(:,2), run1_enu_filtered_251(:,3));
+        gm251 = plot3(run1_enu_filtered_251(:,1), run1_enu_filtered_251(:,2), run1_enu_filtered_251(:,3), 'Color', 'b');
         
         n = 501;
         run1_enu_filtered_501 = [input_data(:,1), medfilt1(input_data(:,2), n), medfilt1(input_data(:,3), n), medfilt1(input_data(:,4), n)];
-        gm501 = scatter3(run1_enu_filtered_501(:,1), run1_enu_filtered_501(:,2), run1_enu_filtered_501(:,3));
+        gm501 = plot3(run1_enu_filtered_501(:,1), run1_enu_filtered_501(:,2), run1_enu_filtered_501(:,3), 'Color', 'k');
         
         % plotting time
         title('Median Filtering comparison');
