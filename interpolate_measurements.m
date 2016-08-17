@@ -17,10 +17,9 @@ function [ output ] = interpolate_measurements( loam, varargin )
     
     FREQUENCY=optargs{1};
     
-    NORM_THRESHOLD = 4;
+    NORM_THRESHOLD = 10;
     
     format long;
-    
     
     seconds_converter = 1;
     
@@ -42,7 +41,7 @@ function [ output ] = interpolate_measurements( loam, varargin )
         if ~isempty(a) & ~isempty(b)
             
             % check if the norm of the two measurements is very different
-            if abs(norm(loam(end_index, 2:4))-norm(loam(begin_index, 2:4))) < NORM_THRESHOLD
+            if abs(norm(loam(end_index, 2:3))-norm(loam(begin_index, 2:3))) < NORM_THRESHOLD
             
                 % now we have the first and the last element, time to interpolate
                 % the position and slerp the orientation

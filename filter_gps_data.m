@@ -108,36 +108,36 @@ function [ run1_enu_filtered_151, run1_enu_filtered_201, run1_enu_filtered_251 ]
     
     % MEDIAN FILTER WITH ENU DATA
     if median_filter_enu
-        figure;
-        hold on;
+%         figure;
+%         hold on;
         
         % show original data
-        gg = plot3(input_data(:,1), input_data(:,2), input_data(:,3), 'Color', 'm');
+%         gg = plot3(input_data(:,1), input_data(:,2), input_data(:,3), 'Color', 'm');
         % n-th order median filtetr
         n = 151;
         run1_enu_filtered_151 = [input_data(:,1), medfilt1(input_data(:,2), n), medfilt1(input_data(:,3), n), medfilt1(input_data(:,4), n)];
-        gm151 = plot3(run1_enu_filtered_151(:,1), run1_enu_filtered_151(:,2), run1_enu_filtered_151(:,3), 'Color', 'g');
+%         gm151 = plot3(run1_enu_filtered_151(:,1), run1_enu_filtered_151(:,2), run1_enu_filtered_151(:,3), 'Color', 'g');
         
         n = 201;
         run1_enu_filtered_201 = [input_data(:,1), medfilt1(input_data(:,2), n), medfilt1(input_data(:,3), n), medfilt1(input_data(:,4), n)];
-        gm201 = plot3(run1_enu_filtered_201(:,1), run1_enu_filtered_201(:,2), run1_enu_filtered_201(:,3), 'Color', 'r');
+%         gm201 = plot3(run1_enu_filtered_201(:,1), run1_enu_filtered_201(:,2), run1_enu_filtered_201(:,3), 'Color', 'r');
         
         n = 251;
         run1_enu_filtered_251 = [input_data(:,1), medfilt1(input_data(:,2), n), medfilt1(input_data(:,3), n), medfilt1(input_data(:,4), n)];
-        gm251 = plot3(run1_enu_filtered_251(:,1), run1_enu_filtered_251(:,2), run1_enu_filtered_251(:,3), 'Color', 'b');
+%         gm251 = plot3(run1_enu_filtered_251(:,1), run1_enu_filtered_251(:,2), run1_enu_filtered_251(:,3), 'Color', 'b');
         
         n = 501;
         run1_enu_filtered_501 = [input_data(:,1), medfilt1(input_data(:,2), n), medfilt1(input_data(:,3), n), medfilt1(input_data(:,4), n)];
-        gm501 = plot3(run1_enu_filtered_501(:,1), run1_enu_filtered_501(:,2), run1_enu_filtered_501(:,3), 'Color', 'k');
+%         gm501 = plot3(run1_enu_filtered_501(:,1), run1_enu_filtered_501(:,2), run1_enu_filtered_501(:,3), 'Color', 'k');
         
         % plotting time
-        title('Median Filtering comparison');
-        xlabel('Relative Altitude');
-        ylabel('Relative Longitude');
-        zlabel('Relative Latitude');
-        view(90, 0);
-        legend([gg, gm151 gm201 gm251 gm501], 'GPS', 'Median 151', 'Median 201', 'Median 251', 'Median 501', 0);
-        hold off;
+%         title('Median Filtering comparison');
+%         xlabel('Relative Altitude');
+%         ylabel('Relative Longitude');
+%         zlabel('Relative Latitude');
+%         view(90, 0);
+%         legend([gg, gm151 gm201 gm251 gm501], 'GPS', 'Median 151', 'Median 201', 'Median 251', 'Median 501', 0);
+%         hold off;
     end
     
     

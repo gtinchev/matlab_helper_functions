@@ -2,7 +2,8 @@ function [ ] = run2_results( fovision_pose_body, loam_pose_body, gps_enu)
 %MAIN The main function for interpolating and plotting
 
     seconds_converter = 10^6;
-    fovis = [(fovision_pose_body(:,1) - fovision_pose_body(1,1))/seconds_converter,fovision_pose_body(:,2:11)];
+    fovision_pose_body(:,1) = fovision_pose_body(:,1)/seconds_converter;
+    fovis = [(fovision_pose_body(:,1) - fovision_pose_body(1,1)),fovision_pose_body(:,2:11)];
     fovis = convert_to_associatable_format(fovis);
     
     loam = [loam_pose_body(:,1) - loam_pose_body(1,1), loam_pose_body(:,3)*(-1), loam_pose_body(:,2), loam_pose_body(:,4), loam_pose_body(:,6:8), loam_pose_body(:,5), loam_pose_body(:,9:11)];
@@ -29,13 +30,35 @@ function [ ] = run2_results( fovision_pose_body, loam_pose_body, gps_enu)
     % filter gps
     [filtered_gps_run2_151, filtered_gps_run2_201, filtered_gps_run2_251] = filter_gps_data(gps, 0, 0, 1);
     
-    % interpolate
-    gps_interpolated_151 = interpolate_measurements(filtered_gps_run2_151);
-    gps_interpolated_201 = interpolate_measurements(filtered_gps_run2_201);
-    gps_interpolated_251 = interpolate_measurements(filtered_gps_run2_251);
+     figure;
+    hold on;
+    plot(fovis(:,2), fovis(:,3), '.', 'Color', 'b');
+    plot(filtered_gps_run2_151(:,2), filtered_gps_run2_151(:,3), '.', 'Color', 'r');
+    plot(loam(:,2), loam(:,3), '.', 'Color', 'g');
+    title('Trajectories');
+    xlabel('x');
+    ylabel('y');
+    legend('FOVIS', 'GPS', 'LOAM MS');
     
-    fovis_interpolated = interpolate_measurements(fovis);
-    loam_interpolated = interpolate_measurements(loam);
+    figure;
+    hold on;
+    plot(fovis(:,1), fovis(:,3), '.', 'Color', 'b');
+    plot(filtered_gps_run2_151(:,1), filtered_gps_run2_151(:,3), '.', 'Color', 'r');
+    plot(loam(:,1), loam(:,3), '.', 'Color', 'g');
+    
+    figure;
+    hold on;
+    plot(fovis(:,1), fovis(:,2), '.', 'Color', 'b');
+    plot(filtered_gps_run2_151(:,1), filtered_gps_run2_151(:,2), '.', 'Color', 'r');
+    plot(loam(:,1), loam(:,2), '.', 'Color', 'g');
+    
+    % interpolate
+    gps_interpolated_151 = interpolate_measurements(filtered_gps_run2_151, 1);
+    gps_interpolated_201 = interpolate_measurements(filtered_gps_run2_201, 1);
+    gps_interpolated_251 = interpolate_measurements(filtered_gps_run2_251, 1);
+    
+    fovis_interpolated = interpolate_measurements(fovis, 1);
+    loam_interpolated = interpolate_measurements(loam, 1);
     
     % save to files
     spath = '/home/edbot/Documents/Husky/Results/george-square-west-2016-07-13/run2/';
@@ -62,7 +85,7 @@ function [ ] = run2_results( fovision_pose_body, loam_pose_body, gps_enu)
     verb = '--verbose ';
     pl_ate = ['--plot ' spath '/comparison/ate/'];
     pl_rpe = ['--plot ' spath 'comparison/rpe/fovis_loam '];
-    fixed_delta = '--fixed_delta --delta_unit m';
+    fixed_delta = '--fixed_delta --delta_unit s --delta 1';
     
     % ATE
     
