@@ -56,15 +56,17 @@ function [] = plot_rpy( fovis, loam, loop, x_threshold,y_threshold, fix_loam )
         end
     end
     
-    indexes_l = find(loam(:,11)<y_threshold & loam(:,1)>x_threshold);
+    
     
     if fix_loam
-        for i=1:length(indexes_l)
-            if l_2(indexes_l(i),11) > 0
-                l_2(indexes_l(i),11) = l_2(indexes_l(i),11)+360;
-            else
-                l_2(indexes_l(i),11) = abs(mod(loam(indexes_l(i),11),(loam(indexes_l(i), 11)/abs(loam(indexes_l(i), 11)))*(-1)*180))+180;
-            end
+        indexes_l_2pi = [76:100, 105:117, 119, 152, 154:424, 433:439]';
+        indexes_l_4pi = [425:432]';
+        
+        for i=1:length(indexes_l_2pi)
+            l_2(indexes_l_2pi(i),11) = l_2(indexes_l_2pi(i),11)+360;
+        end
+        for i=1:length(indexes_l_4pi)
+            l_2(indexes_l_4pi(i),11) = l_2(indexes_l_4pi(i),11)+720;
         end
     end
     
