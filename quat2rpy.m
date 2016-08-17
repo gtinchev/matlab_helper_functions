@@ -25,8 +25,6 @@ function [ roll, pitch, yaw ] = quat2rpy( q, solution_number)
         xz - wy, yz + wx, 1.0 - (xx + yy)
         ];
     
-    % check if R is correct
-    
     euler_out = zeros(1,3); % roll, pitch, yaw
     euler_out_2 = zeros(1,3); % roll, pitch, yaw
 %     Check that pitch is not at a singularity

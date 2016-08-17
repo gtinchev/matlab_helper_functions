@@ -6,33 +6,33 @@ function [ ] = run1_results( fovision_pose_body, loam_pose_body, gps_enu)
     loam = [loam_pose_body(:,1) - loam_pose_body(1,1),loam_pose_body(:,2:4), loam_pose_body(:,6:8), loam_pose_body(:,5), loam_pose_body(:,9:11)];
     gps = [gps_enu(:,1) - gps_enu(1,1), gps_enu(:,2)-gps_enu(1,2), gps_enu(:,3)-gps_enu(1,3), gps_enu(:,2:8)];
     
-%     figure;
-%     hold on;
-%     plot(fovis(:,2), fovis(:,3), '.', 'Color', 'b');
-%     plot(gps(:,2), gps(:,3), '.', 'Color', 'r');
-%     plot(loam(:,2), loam(:,3), '.', 'Color', 'g');
-%     title('Trajectories');
-%     xlabel('South');
-%     ylabel('West');
-%     legend('FOVIS', 'GPS', 'LOAM MS');
-%     
-%     figure;
-%     hold on;
-%     plot(fovis(:,1), fovis(:,3), '.', 'Color', 'b');
-%     plot(gps(:,1), gps(:,3), '.', 'Color', 'r');
-%     plot(loam(:,1), loam(:,3), '.', 'Color', 'g');
-%     title('Time against West');
-%     xlabel('Time [s]');
-%     ylabel('West');
-%     
-%     figure;
-%     hold on;
-%     plot(fovis(:,1), fovis(:,2), '.', 'Color', 'b');
-%     plot(gps(:,1), gps(:,2), '.', 'Color', 'r');
-%     plot(loam(:,1), loam(:,2), '.', 'Color', 'g');
-%     title('Time against South');
-%     xlabel('Time [s]');
-%     ylabel('South');
+    figure;
+    hold on;
+    plot(fovis(:,2), fovis(:,3), '.', 'Color', 'b');
+    plot(gps(:,2), gps(:,3), '.', 'Color', 'r');
+    plot(loam(:,2), loam(:,3), '.', 'Color', 'g');
+    title('Trajectories');
+    xlabel('South');
+    ylabel('West');
+    legend('FOVIS', 'GPS', 'LOAM MS');
+    
+    figure;
+    hold on;
+    plot(fovis(:,1), fovis(:,3), '.', 'Color', 'b');
+    plot(gps(:,1), gps(:,3), '.', 'Color', 'r');
+    plot(loam(:,1), loam(:,3), '.', 'Color', 'g');
+    title('Time against West');
+    xlabel('Time [s]');
+    ylabel('West');
+    
+    figure;
+    hold on;
+    plot(fovis(:,1), fovis(:,2), '.', 'Color', 'b');
+    plot(gps(:,1), gps(:,2), '.', 'Color', 'r');
+    plot(loam(:,1), loam(:,2), '.', 'Color', 'g');
+    title('Time against South');
+    xlabel('Time [s]');
+    ylabel('South');
     
     % filter gps
     [filtered_gps_run1_151, filtered_gps_run1_201, filtered_gps_run1_251] = filter_gps_data(gps, 0, 0, 1);
@@ -153,7 +153,7 @@ function [ ] = run1_results( fovision_pose_body, loam_pose_body, gps_enu)
     end
 
     % plot rpy
-    plot_rpy(fovision_pose_body, loam_pose_body, ' Loop 1');
+    plot_rpy(fovis_interpolated, loam_interpolated, ' Loop 1', 112, 106, 0);
 
 end
 

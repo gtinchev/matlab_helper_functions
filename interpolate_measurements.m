@@ -56,9 +56,12 @@ function [ output ] = interpolate_measurements( loam, varargin )
 
                 % orientation
                 if size(a,2) > 4
-                    output(ii, 5:8) = slerp(a(1,5:8)', b(1,5:8)', t);        
+                    output(ii, 5:8) = slerp(a(1,5:8)', b(1,5:8)', t);
+                    [r,p,y] = quat2rpy(output(ii,5:8),1);
+                    output(ii, 9:11) = [r p y];
                 else
                     output(ii, 5:8) = [0,0,0,0];
+                    output(ii, 9:11) = [0,0,0];
                 end
 
                 ii=ii+1;

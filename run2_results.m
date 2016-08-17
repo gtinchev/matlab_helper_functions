@@ -30,7 +30,7 @@ function [ ] = run2_results( fovision_pose_body, loam_pose_body, gps_enu)
     % filter gps
     [filtered_gps_run2_151, filtered_gps_run2_201, filtered_gps_run2_251] = filter_gps_data(gps, 0, 0, 1);
     
-     figure;
+    figure;
     hold on;
     plot(fovis(:,2), fovis(:,3), '.', 'Color', 'b');
     plot(filtered_gps_run2_151(:,2), filtered_gps_run2_151(:,3), '.', 'Color', 'r');
@@ -140,7 +140,7 @@ function [ ] = run2_results( fovision_pose_body, loam_pose_body, gps_enu)
     end
 
     % plot rpy
-    plot_rpy(fovision_pose_body, loam_pose_body, ' Loop 2');
+    plot_rpy(fovis_interpolated, loam_interpolated, ' Loop 2', 76, 106, 1);
 
 end
 
